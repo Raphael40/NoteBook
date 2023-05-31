@@ -3,4 +3,4 @@ const NotesView = require('./notesView')
 
 const model = new NotesModel();
 
-const view = new NotesView(model);
+const view = new NotesView(model, client);

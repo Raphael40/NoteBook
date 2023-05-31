@@ -2,7 +2,7 @@ const NotesModel = require("./notesModel")
 
 class NotesView {
 
-  constructor(model) {
+  constructor(model, client) {
     this.model = model
     this.buttonNote = document.querySelector('#add-note-button')
     this.mainContainerEl = document.querySelector('#main-container');
@@ -26,6 +26,10 @@ class NotesView {
       this.mainContainerEl.append(div)
       document.querySelector('#note-input').value = ''
     })
+  }
+
+  displayNotesFromApi() {
+    
   }
 }
 
