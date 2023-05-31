@@ -33,4 +33,33 @@ describe ('NotesView', () => {
     
     expect(document.querySelector('.note').textContent).toEqual('MegaNote')
   })
+
+  it ('prevents notes being added accumulatively', () => {
+    const notesModel = new NotesModel()
+    const input = document.querySelector('#note-input');
+    input.value = 'MegaNote'
+    // notesModel.addNote(input.value)
+    const notesView = new NotesView(notesModel)
+    
+    const addNoteButton = document.querySelector('#add-note-button');
+    addNoteButton.click()
+    addNoteButton.click()
+
+    expect(document.querySelectorAll('.note').length).toEqual(2)
+  })
+
+  it ('prevents notes being added accumulatively', () => {
+    const notesModel = new NotesModel();
+    const notesView = new NotesView(notesModel);
+
+    const input = document.querySelector('#note-input');
+    input.value = 'MegaNote';
+    
+    const Button = document.querySelector('#add-note-button');
+
+    Button.click()
+    Button.click()
+
+    expect(document.querySelectorAll('.note').length).toEqual(2)
+  })
 })

@@ -13,7 +13,6 @@ class NotesModel {
 
   reset() {
     this.notes.length = 0
-    return this.notes
   }
 }
 

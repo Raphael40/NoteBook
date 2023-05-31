@@ -8,6 +8,7 @@ class NotesView {
       let note = document.querySelector('#note-input')
       model.addNote(note.value)
       this.displayNotes()
+      model.reset()
     })
   }
 
@@ -17,6 +18,7 @@ class NotesView {
       div.textContent = note
       div.classList.add('note')
       this.mainContainerEl.append(div)
+      document.querySelector('#note-input').value = ''
     })
   }
 }
