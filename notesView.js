@@ -1,4 +1,7 @@
+const NotesModel = require("./notesModel")
+
 class NotesView {
+
   constructor(model) {
     this.model = model
     this.buttonNote = document.querySelector('#add-note-button')
@@ -6,12 +9,15 @@ class NotesView {
 
     this.buttonNote.addEventListener('click', () => {
       let note = document.querySelector('#note-input')
-      model.addNote(note.value)
-      this.displayNotes()
-      model.reset()
+      // console.log(note.value)
+      if (note.value.length > 0) {
+        model.addNote(note.value)
+        this.displayNotes()
+        model.reset()
+      }
     })
   }
-
+  
   displayNotes() {
     this.model.getNotes().forEach((note) => {
       let div = document.createElement('div')
