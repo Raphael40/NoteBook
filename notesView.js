@@ -12,8 +12,6 @@ class NotesView {
       let note = document.querySelector('#note-input')
       if (note.value.length > 0) {
         this.addNotesToApi(note.value)
-        // model.addNote(note.value)
-        // this.displayNotes()
       }
     })
   }
@@ -21,7 +19,6 @@ class NotesView {
   displayNotes() {
     const existingNotes = document.querySelectorAll('.note')
     existingNotes.forEach((note) => {note.remove()})
-    console.log(this.model.getNotes())
     this.model.getNotes().forEach((note) => {
       let div = document.createElement('div')
       div.textContent = note
