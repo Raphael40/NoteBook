@@ -11,14 +11,17 @@ class NotesView {
     this.buttonNote.addEventListener('click', () => {
       let note = document.querySelector('#note-input')
       if (note.value.length > 0) {
-        model.addNote(note.value)
-        this.displayNotes()
-        model.reset()
+        this.addNotesToApi(note.value)
+        // model.addNote(note.value)
+        // this.displayNotes()
       }
     })
   }
   
   displayNotes() {
+    const existingNotes = document.querySelectorAll('.note')
+    existingNotes.forEach((note) => {note.remove()})
+    console.log(this.model.getNotes())
     this.model.getNotes().forEach((note) => {
       let div = document.createElement('div')
       div.textContent = note
@@ -27,13 +30,18 @@ class NotesView {
       document.querySelector('#note-input').value = ''
     })
   }
+  
+  addNotesToApi(noteValue) {
+    this.client.createNote(noteValue).then(() => {
+      this.displayNotesFromApi()
+    })
+  }
 
-  displayNotesFromApi(callback) {
+  displayNotesFromApi() {
     this.client.loadNotes(
       (noteData) => {
       this.model.setNotes(noteData)
       this.displayNotes()
-      callback()
     })
   }
 }
